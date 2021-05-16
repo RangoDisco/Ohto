@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+$bg-color: #262626;
+$accent: #2a9d8f;
+
+html {
+  background-color: #262626;
+  color: white;
+}
+body {
+  height: 100vh;
+  display: flex;
+}
+app-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

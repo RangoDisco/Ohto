@@ -1,0 +1,18 @@
+$bg-color: #262626;
+$accent: #2a9d8f;
+button {
+  background-color: $accent;
+  cursor: pointer;
+  color: #000;
+  border: none;
+  padding: 10px 5px 10px 5px;
+  font-size: 20px;
+  margin-top: 10px;
+  border-radius: 0.5rem;
+  transition: all 200ms linear;
+  box-shadow: 0 0.7rem 2rem rgba(0, 0, 0, 0.1);
+  &:hover {
+    transform: translateY(-0.2rem);
+    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.3);
+  }
+}
