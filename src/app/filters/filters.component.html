@@ -1,5 +1,5 @@
 <section class="filters">
-  <form (ngSubmit)="userFilters.valid && getFilters()" #userFilters="ngForm">
+  <form (ngSubmit)="userFilters.valid && getFilters(); open(content)" #userFilters="ngForm">
     <!-- Type Select -->
     <select [(ngModel)]="userChoices.type" (change)="changeType()" name="type" #userType="ngModel" required>
       <option value="" seleted disabled hidden>Type</option>
@@ -53,4 +53,40 @@
       <button type="submit">Get my {{selectedType}}</button>
     </section>
   </form>
+</section>
+
+<!-- RESULT -->
+<section class="result">
+  <ng-template #content let-modal>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="show-infos">
+      <div class="show-infos-top">
+        <div class="img"></div>
+        <div class="title-and-link"></div>
+        <div class="desc"></div>
+      </div>
+      <div class="show-infos-bottom">
+        <div class="tags">
+          <p class="format"></p>
+          <p class="genres"></p>
+          <p class="episodes"></p>
+          <p class="status"></p>
+          <p class="start-date"></p>
+          <p class="end-date"></p>
+          <p class="score"></p>
+        </div>
+        <div class="characters">
+          <div class="character">
+            <div class="img"></div>
+            <div class="side">
+              <p class="name"></p>
+              <p class="role"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
 </section>

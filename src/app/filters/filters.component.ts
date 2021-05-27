@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
 import { FiltersService } from '../common/filters.service';
+import { ModalService } from '../common/modal.service';
 import { QueryService } from '../common/query.service';
 import { UserFilters } from '../common/user-filters.model';
 
@@ -22,9 +23,9 @@ export class FiltersComponent implements OnInit {
 
   // Instance de la classe UserFilters
   userChoices: UserFilters
-
-  constructor(public filtersService: FiltersService, public getShowService: QueryService) { }
-
+  randomShow;
+  constructor(public filtersService: FiltersService, public getShowService: QueryService, private modalService: ModalService) { }
+  closeResult = '';
   ngOnInit(): void {
     // this.getShow()
     // Instanciation de la classe
@@ -46,11 +47,16 @@ export class FiltersComponent implements OnInit {
   }
 
   getShow(): void {
-    this.getShowService.getShow(this.userChoices)
+    this.getShowService.getShow(this.userChoices, this.randomShow)
+    console.log(this.randomShow)
   }
 
   // Change type on button
   changeType(): void {
     this.selectedType = this.userChoices.type
+  }
+
+  open(content) {
+    this.modalService.open(content);
   }
 }

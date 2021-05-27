@@ -1,28 +1,17 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ThrowStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { FiltersService } from './filters.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QueryService {
-  //Url de l'api
-  // private url: string = "https://graphql.anilist.co"
-
-  //Parametres de l'header
-  private headerOpt = {
-    "Accept": "application/json",
-    "Content-Type": "application/json"
-  }
-  private reqOpt = {
-    headers: new HttpHeaders(this.headerOpt)
-  }
-  constructor(private http: HttpClient, private filtersService: FiltersService) {
+  constructor(private http: HttpClient) {
   }
 
-  public getShow(userChoices) {
+  public getShow(userChoices, randomShow) {
     // Here we define our query as a multi-line string
     // Storing it in a separate .graphql/.gql file is also possible
     var query = `
@@ -97,7 +86,6 @@ query ($id: Int, $page: Int, $perPage: Int, $type: MediaType, $format: MediaForm
           variables: variables
         })
       };
-
     // Make the HTTP Api request
     fetch(url, options).then(handleResponse)
       .then(handleData)
@@ -110,7 +98,8 @@ query ($id: Int, $page: Int, $perPage: Int, $type: MediaType, $format: MediaForm
     }
 
     function handleData(data) {
-      console.log(data);
+      randomShow = data;
+      return data as JSON
     }
 
     function handleError(error) {
