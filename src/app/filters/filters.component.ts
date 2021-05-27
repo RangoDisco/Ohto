@@ -22,13 +22,15 @@ export class FiltersComponent implements OnInit {
 
   // Instance de la classe UserFilters
   userChoices: UserFilters
+  queryResult: [];
+  randomShow;
 
   constructor(public filtersService: FiltersService, public getShowService: QueryService) { }
 
   ngOnInit(): void {
-    // this.getShow()
     // Instanciation de la classe
     this.userChoices = new UserFilters('', '', '', '', '', '');
+    console.log(this.userChoices.status);
 
     // Appel de la fonction qui crée les années disponibles
     this.years = this.filtersService.createYears();
@@ -46,7 +48,13 @@ export class FiltersComponent implements OnInit {
   }
 
   getShow(): void {
-    this.getShowService.getShow(this.userChoices)
+    console.log(this.userChoices.status);
+    this.getShowService.getShow(this.userChoices).subscribe((data) => {
+      this.queryResult = data.data.Page.media;
+      const randomNumber = Math.floor(Math.random() * this.queryResult.length);
+      this.randomShow = this.queryResult[randomNumber]
+      console.log(this.randomShow)
+    })
   }
 
   // Change type on button

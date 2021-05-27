@@ -5,10 +5,11 @@ import { AppComponent } from './app.component';
 import { ResultComponent } from './result/result.component';
 import { FiltersComponent } from './filters/filters.component';
 import { HttpClientModule } from '@angular/common/http';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [AppComponent, ResultComponent, FiltersComponent],
-  imports: [BrowserModule, FormsModule, HttpClientModule],
+  imports: [BrowserModule, FormsModule, HttpClientModule, GraphQLModule],
   providers: [],
   bootstrap: [AppComponent],
 })

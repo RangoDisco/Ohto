@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Apollo, gql } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FiltersService } from './filters.service';
@@ -8,24 +9,13 @@ import { FiltersService } from './filters.service';
   providedIn: 'root',
 })
 export class QueryService {
-  //Url de l'api
-  // private url: string = "https://graphql.anilist.co"
 
-  //Parametres de l'header
-  private headerOpt = {
-    "Accept": "application/json",
-    "Content-Type": "application/json"
-  }
-  private reqOpt = {
-    headers: new HttpHeaders(this.headerOpt)
-  }
-  constructor(private http: HttpClient, private filtersService: FiltersService) {
+  constructor(private apollo: Apollo, private filtersService: FiltersService) {
   }
 
-  public getShow(userChoices) {
-    // Here we define our query as a multi-line string
-    // Storing it in a separate .graphql/.gql file is also possible
-    var query = `
+  // Here we define our query as a multi-line string
+  // Storing it in a separate .graphql/.gql file is also possible
+  public queryShow = gql`
 query ($id: Int, $page: Int, $perPage: Int, $type: MediaType, $format: MediaFormat, $genre: String, $seasonYear: Int, $season: MediaSeason,  $status: MediaStatus, ) { # Define which variables will be used in the query (id)
   Page(page: $page, perPage: $perPage){
     pageInfo{
@@ -72,50 +62,20 @@ query ($id: Int, $page: Int, $perPage: Int, $type: MediaType, $format: MediaForm
 }
 `;
 
-    // Define our query variables and values that will be used in the query request
-    var variables = {
-      type: userChoices.type,
-      format: userChoices.format,
-      seasonYear: userChoices.year,
-      genre: userChoices.genre,
-      season: userChoices.season,
-      status: userChoices.status,
-      page: 1,
-      perPage: 10
-    };
-
-    // Define the config we'll need for our Api request
-    var url = 'https://graphql.anilist.co',
-      options = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify({
-          query: query,
-          variables: variables
-        })
-      };
-
-    // Make the HTTP Api request
-    fetch(url, options).then(handleResponse)
-      .then(handleData)
-      .catch(handleError);
-
-    function handleResponse(response) {
-      return response.json().then(function (json) {
-        return response.ok ? json : Promise.reject(json);
-      });
-    }
-
-    function handleData(data) {
-      console.log(data);
-    }
-
-    function handleError(error) {
-      alert('Error, check console');
-      console.error(error);
-    }
+  public getShow(userChoices): Observable<any> {
+    return this.apollo.watchQuery<any>({
+      query: this.queryShow,
+      variables: {
+        type: userChoices.type,
+        format: userChoices.format,
+        seasonYear: userChoices.year,
+        genre: userChoices.genre,
+        season: userChoices.season,
+        status: userChoices.status,
+        page: 1,
+        perPage: 10
+      },
+    }).valueChanges
   }
+
 }
