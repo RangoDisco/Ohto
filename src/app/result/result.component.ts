@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalService } from '../common/modal.service';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-result',
@@ -7,11 +6,20 @@ import { ModalService } from '../common/modal.service';
   styleUrls: ['./result.component.scss']
 })
 export class ResultComponent implements OnInit {
-
-
+  @Input()
+  randomShow;
+  @Input()
+  genresFromShow: [];
+  @Input()
+  charactersList: [];
   constructor() { }
 
   ngOnInit(): void {
+    if (this.randomShow) {
+      this.genresFromShow = this.randomShow.genres
+    }
+
+    console.log(this.randomShow)
   }
 
 

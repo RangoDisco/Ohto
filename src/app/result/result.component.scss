@@ -1,0 +1,45 @@
+.result {
+  width: 60%;
+}
+.img {
+  width: fit-content;
+}
+.result-card {
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+}
+.top {
+  display: flex;
+  flex-direction: row;
+}
+img {
+  height: 150px;
+}
+
+.tags {
+  width: 50%;
+  display: flex;
+  flex-flow: row wrap;
+}
+.tag {
+  margin-left: 2%;
+}
+.characters {
+  width: 50%;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.character {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  background-color: #f7ede2;
+  color: #262626;
+}
+
+.char-name-role {
+  display: flex;
+  flex-direction: column;
+}

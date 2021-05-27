@@ -1,92 +1,64 @@
 <section class="filters">
-  <form (ngSubmit)="userFilters.valid && getFilters(); open(content)" #userFilters="ngForm">
-    <!-- Type Select -->
-    <select [(ngModel)]="userChoices.type" (change)="changeType()" name="type" #userType="ngModel" required>
-      <option value="" seleted disabled hidden>Type</option>
-      <option value="ANIME">Anime</option>
-      <option value="MANGA">Manga</option>
-    </select>
-    <div class="errors" *ngIf="userFilters.errors && userType.errors.required">
-      Please select
-    </div>
-    <select [(ngModel)]="userChoices.format" name="format" #userFormat="ngModel" required>
-      <option value="" seleted disabled hidden>Format</option>
-      <option value="TV">TV</option>
-      <option value="TV_SHORT">TV_Short</option>
-      <option value="MOVIE">Movie</option>
-      <option value="OVA">OVA</option>
-    </select>
-    <div class="errors" *ngIf="userFilters.errors && userType.errors.required">
-      Please select
-    </div>
-    <!-- Genre Select -->
-    <select [(ngModel)]="userChoices.genre" #userGenre="ngModel" name="genre" required>
-      <option value="" selected disabled hidden>Genre</option>
-      <option *ngFor="let genre of genres" value="{{ genre }}" name="{{ genre }}">
-        {{ genre }}
-      </option>
-    </select>
+  <form (ngSubmit)="userFilters.valid && getFilters()" #userFilters="ngForm">
+    <div class="filter-list">
+      <!-- Type Select -->
+      <select class="filter" [(ngModel)]="userChoices.type" (change)="changeType()" name="type" #userType="ngModel"
+        required>
+        <option value="" seleted disabled hidden>Type</option>
+        <option value="ANIME">Anime</option>
+        <option value="MANGA">Manga</option>
+      </select>
+      <div class="errors" *ngIf="userFilters.errors && userType.errors.required">
+        Please select
+      </div>
+      <select class="filter" [(ngModel)]="userChoices.format" name="format" #userFormat="ngModel" required>
+        <option value="" seleted disabled hidden>Format</option>
+        <option value="TV">TV</option>
+        <option value="TV_SHORT">TV_Short</option>
+        <option value="MOVIE">Movie</option>
+        <option value="OVA">OVA</option>
+      </select>
+      <div class="errors" *ngIf="userFilters.errors && userType.errors.required">
+        Please select
+      </div>
+      <!-- Genre Select -->
+      <select class="filter" [(ngModel)]="userChoices.genre" #userGenre="ngModel" name="genre" required>
+        <option value="" selected disabled hidden>Genre</option>
+        <option *ngFor="let genre of genres" value="{{ genre }}" name="{{ genre }}">
+          {{ genre }}
+        </option>
+      </select>
 
-    <!-- Year Select -->
-    <select [(ngModel)]="userChoices.year" name="year" #userYear="ngModel" required>
-      <option value="" selected disabled hidden>Year</option>
-      <option *ngFor="let year of years" value="{{ year }}">{{ year }}</option>
-    </select>
+      <!-- Year Select -->
+      <select class="filter" [(ngModel)]="userChoices.year" name="year" #userYear="ngModel" required>
+        <option value="" selected disabled hidden>Year</option>
+        <option *ngFor="let year of years" value="{{ year }}">{{ year }}</option>
+      </select>
 
-    <!-- Season Select -->
-    <select [(ngModel)]="userChoices.season" name="season" #userSeason="ngModel" required>
-      <option value="" selected disabled hidden>Season</option>
-      <option value="WINTER">Winter</option>
-      <option value="SPRING">Spring</option>
-      <option value="SUMMER">Summer</option>
-      <option value="FALL">Fall</option>
-    </select>
-    <!-- Status Select -->
-    <select [(ngModel)]="userChoices.status" name="status" #userStatus="ngModel" required>
-      <option value="" selected disabled hidden>Airing Status</option>
-      <option value="RELEASING">Releasing</option>
-      <option value="FINISHED">Finished</option>
-      <option value="NOT_YET_RELEASED">Not Yet Aired</option>
-      <option value="CANCELLED">Cancelled</option>
-    </select>
+      <!-- Season Select -->
+      <select class="filter" [(ngModel)]="userChoices.season" name="season" #userSeason="ngModel" required>
+        <option value="" selected disabled hidden>Season</option>
+        <option value="WINTER">Winter</option>
+        <option value="SPRING">Spring</option>
+        <option value="SUMMER">Summer</option>
+        <option value="FALL">Fall</option>
+      </select>
+      <!-- Status Select -->
+      <select class="filter" [(ngModel)]="userChoices.status" name="status" #userStatus="ngModel">
+        <option value="" selected disabled hidden>Airing Status</option>
+        <option value="RELEASING">Releasing</option>
+        <option value="FINISHED">Finished</option>
+        <option value="NOT_YET_RELEASED">Not Yet Aired</option>
+        <option value="CANCELLED">Cancelled</option>
+      </select>
+    </div>
     <section class="btn">
       <button type="submit">Get my {{selectedType}}</button>
     </section>
   </form>
 </section>
 
-<!-- RESULT -->
 <section class="result">
-  <ng-template #content let-modal>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <div class="show-infos">
-      <div class="show-infos-top">
-        <div class="img"></div>
-        <div class="title-and-link"></div>
-        <div class="desc"></div>
-      </div>
-      <div class="show-infos-bottom">
-        <div class="tags">
-          <p class="format"></p>
-          <p class="genres"></p>
-          <p class="episodes"></p>
-          <p class="status"></p>
-          <p class="start-date"></p>
-          <p class="end-date"></p>
-          <p class="score"></p>
-        </div>
-        <div class="characters">
-          <div class="character">
-            <div class="img"></div>
-            <div class="side">
-              <p class="name"></p>
-              <p class="role"></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </ng-template>
+  <app-result [randomShow]="randomShow" [genresFromShow]="genresFromShow" [charactersList]="charactersList">
+  </app-result>
 </section>

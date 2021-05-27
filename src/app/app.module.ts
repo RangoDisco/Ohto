@@ -5,14 +5,11 @@ import { AppComponent } from './app.component';
 import { ResultComponent } from './result/result.component';
 import { FiltersComponent } from './filters/filters.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { Apollo } from 'apollo-angular';
-import { HttpLinkModule } from 'apollo-angular-link-http';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [AppComponent, ResultComponent, FiltersComponent],
-  imports: [BrowserModule, FormsModule, HttpClientModule, NgbModule, Apollo,
-    HttpLinkModule,],
+  imports: [BrowserModule, FormsModule, HttpClientModule, GraphQLModule],
   providers: [],
   bootstrap: [AppComponent],
 })
