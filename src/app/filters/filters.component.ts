@@ -24,6 +24,8 @@ export class FiltersComponent implements OnInit {
   userChoices: UserFilters
   queryResult: [];
   randomShow;
+  genresFromShow: any[] = [];
+  charactersList: any[] = [];
 
   constructor(public filtersService: FiltersService, public getShowService: QueryService) { }
 
@@ -43,7 +45,6 @@ export class FiltersComponent implements OnInit {
 
 
   getFilters(): void {
-    console.log(this.userChoices);
     this.getShow();
   }
 
@@ -53,6 +54,18 @@ export class FiltersComponent implements OnInit {
       this.queryResult = data.data.Page.media;
       const randomNumber = Math.floor(Math.random() * this.queryResult.length);
       this.randomShow = this.queryResult[randomNumber]
+
+      for (let i = 0; i < 2; i++) {
+        if (this.randomShow.genres[i]) {
+          this.genresFromShow.push(this.randomShow.genres[i])
+        }
+      }
+      for (let j = 0; j < 4; j++) {
+        if (this.randomShow.characters.edges[j]) {
+          this.charactersList.push(this.randomShow.characters.edges[j])
+        }
+      }
+
       console.log(this.randomShow)
     })
   }

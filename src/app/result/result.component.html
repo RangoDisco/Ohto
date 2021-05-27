@@ -1,1 +1,60 @@
-<p>Carte du résultat nul là</p>
+<main class="result" *ngIf="randomShow">
+    <section class="result-card">
+        <div class="top">
+            <div class="img"><img
+                    src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101922-PEn1CTc93blC.jpg"
+                    alt="Image de l'anime"></div>
+            <div class="desc-title">
+                <div class="title-button">
+                    <div class="title">
+                        <h2>{{randomShow.title.romaji}}</h2>
+                    </div>
+                    <div class="anilist-button">
+                        <button class="anilist">Anilist</button>
+                    </div>
+                </div>
+                <div class="description">{{randomShow.description}}</div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="tags">
+                <div class="tag format">
+                    <h3>Type</h3>
+                    <p>{{randomShow.type}}</p>
+                </div>
+                <div class="tag genres">
+                    <h3>Genres</h3>
+                    <p class="genre" *ngFor="let genre of genresFromShow">{{genre}}</p>
+                </div>
+                <div class="tag episodes">
+                    <h3>Episodes</h3>
+                    <p>{{randomShow.episodes}}</p>
+                </div>
+                <div class="tag status">
+                    <h3>Status</h3>
+                    <p>{{randomShow.status}}</p>
+                </div>
+                <div class="tag year">
+                    <h3>Year</h3>
+                    <p>{{randomShow.startDate.year}}</p>
+                </div>
+                <div class="tag score">
+                    <h3>Score</h3>
+                    <p>{{randomShow.meanScore}}</p>
+                </div>
+            </div>
+            <div class="characters">
+                <div class="character" *ngFor="let character of charactersList">
+                    <div class="char-img">
+                        <img [src]="character.node.image.large" alt="{{character.node.name.last}}'s img">
+                    </div>
+                    <div class="char-name-role">
+                        <div class="name">{{character.node.name.first}} {{character.node.name.last}}</div>
+                        <div class="role">Main</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>

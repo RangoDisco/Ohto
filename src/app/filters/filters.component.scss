@@ -1,6 +1,13 @@
 $bg-color: #262626;
 $accent: #2a9d8f;
+
+.btn {
+  margin-top: 2%;
+  display: flex;
+  justify-content: center;
+}
 button {
+  width: 35%;
   background-color: $accent;
   cursor: pointer;
   color: #000;
@@ -15,4 +22,19 @@ button {
     transform: translateY(-0.2rem);
     box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.3);
   }
+}
+
+.filter-list {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+.filter {
+  font-size: 1.3rem;
+  margin: 10px;
+  height: 40px;
+  width: 25%;
 }
