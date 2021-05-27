@@ -1,4 +1,7 @@
 # 👷 CURRENTLY IN DEVELOPEMENT
 ## :fireworks: Ohto :sparkler:
 
-A small Angular app using [AniList's API](https://github.com/AniList/ApiV2-GraphQL-Docs) to offer a random anime/manga based on your filters
+A small app offering a random anime/manga based on your filters using:
+#### - Angular
+#### - Apollo
+#### - [AniList's  GraphQL API](https://github.com/AniList/ApiV2-GraphQL-Docs)
