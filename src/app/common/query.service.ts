@@ -29,6 +29,9 @@ query ($id: Int, $page: Int, $perPage: Int, $type: MediaType, $format: MediaForm
       romaji
       english
     }
+    coverImage{
+      large
+    }
     startDate{
       year
     }

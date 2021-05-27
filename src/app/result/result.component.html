@@ -1,16 +1,19 @@
 <main class="result" *ngIf="randomShow">
     <section class="result-card">
         <div class="top">
-            <div class="img"><img
-                    src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101922-PEn1CTc93blC.jpg"
-                    alt="Image de l'anime"></div>
+            <div class="img"><img [src]="randomShow.coverImage.large" alt="Image de l'anime"></div>
             <div class="desc-title">
                 <div class="title-button">
                     <div class="title">
                         <h2>{{randomShow.title.romaji}}</h2>
                     </div>
                     <div class="anilist-button">
-                        <button class="anilist">Anilist</button>
+                        <a class="anilist" href="https://anilist.co/manga/{{randomShow.id}}" target="_blank"
+                            *ngIf="randomShow.chapters !== null; else anime">Anilist</a>
+                        <ng-template #anime>
+                            <a href="https://anilist.co/anime/{{randomShow.id}}" target="_blank"
+                                class="anilist">Anilist</a>
+                        </ng-template>
                     </div>
                 </div>
                 <div class="description">{{randomShow.description}}</div>
@@ -46,7 +49,8 @@
             <div class="characters">
                 <div class="character" *ngFor="let character of charactersList">
                     <div class="char-img">
-                        <img [src]="character.node.image.large" alt="{{character.node.name.last}}'s img">
+                        <img class="img-char" [src]="character.node.image.large"
+                            alt="{{character.node.name.last}}'s img">
                     </div>
                     <div class="char-name-role">
                         <div class="name">{{character.node.name.first}} {{character.node.name.last}}</div>

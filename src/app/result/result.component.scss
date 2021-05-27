@@ -13,10 +13,22 @@
   display: flex;
   flex-direction: row;
 }
-img {
+.img img{
+  border-radius: 5px;
   height: 150px;
 }
-
+.desc-title{
+  margin-left: 10px;
+}
+.title-button{
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+}
+.bottom{
+  display: flex;
+  flex-direction: row;
+}
 .tags {
   width: 50%;
   display: flex;
@@ -26,6 +38,7 @@ img {
   margin-left: 2%;
 }
 .characters {
+  height: 30vh;
   width: 50%;
   display: flex;
   flex-flow: row wrap;
@@ -33,10 +46,20 @@ img {
 
 .character {
   width: 50%;
+  height: 45%;
   display: flex;
   flex-direction: row;
   background-color: #f7ede2;
   color: #262626;
+  border-radius: 5px;
+}
+.char-img{
+  height: 100%;
+}
+.img-char{
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  height: 100%;
 }
 
 .char-name-role {

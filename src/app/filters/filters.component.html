@@ -11,7 +11,8 @@
       <div class="errors" *ngIf="userFilters.errors && userType.errors.required">
         Please select
       </div>
-      <select class="filter" [(ngModel)]="userChoices.format" name="format" #userFormat="ngModel" required>
+      <select class="filter" [(ngModel)]="userChoices.format" name="format" #userFormat="ngModel" required
+        [disabled]="disableSelect">
         <option value="" seleted disabled hidden>Format</option>
         <option value="TV">TV</option>
         <option value="TV_SHORT">TV_Short</option>

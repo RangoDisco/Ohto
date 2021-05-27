@@ -26,12 +26,13 @@ export class FiltersComponent implements OnInit {
   randomShow;
   genresFromShow: any[] = [];
   charactersList: any[] = [];
+  disableSelect: boolean = false;
 
   constructor(public filtersService: FiltersService, public getShowService: QueryService) { }
 
   ngOnInit(): void {
     // Instanciation de la classe
-    this.userChoices = new UserFilters('', '', '', '', '', '');
+    this.userChoices = new UserFilters('', '', '', '', '', '', '');
     console.log(this.userChoices.status);
 
     // Appel de la fonction qui crée les années disponibles
@@ -49,6 +50,8 @@ export class FiltersComponent implements OnInit {
   }
 
   getShow(): void {
+    this.genresFromShow = [];
+    this.charactersList = [];
     console.log(this.userChoices.status);
     this.getShowService.getShow(this.userChoices).subscribe((data) => {
       this.queryResult = data.data.Page.media;
@@ -72,6 +75,11 @@ export class FiltersComponent implements OnInit {
 
   // Change type on button
   changeType(): void {
-    this.selectedType = this.userChoices.type
+    this.selectedType = this.userChoices.type;
+    if (this.userChoices.type === "MANGA") this.disableSelect = !this.disableSelect;
+    else if (this.userChoices.type === "ANIME") this.disableSelect = false;
+
+
+
   }
 }
