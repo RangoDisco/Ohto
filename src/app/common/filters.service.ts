@@ -4,11 +4,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class FiltersService {
+
   // Gets current year and add one bc anilist has data for the incomming year
   currentYear = new Date().getUTCFullYear() + 1;
   years: number[] = [];
   genres: string[];
   constructor() {
+
     // All the genres for the genre filter
     this.genres = [
       'Action',

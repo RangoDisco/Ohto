@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { Observable } from 'rxjs';
-import { FiltersService } from './filters.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +11,6 @@ export class QueryService {
   }
 
   // Here we define our query as a multi-line string
-  // Storing it in a separate .graphql/.gql file is also possible
   public queryShow = gql`
 query ($id: Int, $page: Int, $perPage: Int, $type: MediaType, $format: MediaFormat, $genre: String, $seasonYear: Int, $season: MediaSeason,  $status: MediaStatus, ) { # Define which variables will be used in the query (id)
   Page(page: $page, perPage: $perPage){
@@ -63,9 +61,13 @@ query ($id: Int, $page: Int, $perPage: Int, $type: MediaType, $format: MediaForm
 }
 `;
 
+
+  // Appel APi en utilisant Apollo, qui retourne un Observable
   public getShow(userChoices): Observable<any> {
     return this.apollo.watchQuery<any>({
       query: this.queryShow,
+
+      // On défini que le contenu des variables correspond aux choix de l'utilisateur
       variables: {
         type: userChoices.type,
         format: userChoices.format,

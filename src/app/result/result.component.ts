@@ -8,18 +8,28 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ResultComponent implements OnInit {
   @Input()
   randomShow;
+  // Tableau des genres fourni par le parent
   @Input()
   genresFromShow: [];
+  // Tableau de personnage fourni par le parent
   @Input()
   charactersList: [];
+
+  showModal: boolean = true;
   constructor() { }
 
   ngOnInit(): void {
     if (this.randomShow) {
-      this.genresFromShow = this.randomShow.genres
+      this.showModal = true;
+
+      console.log(this.randomShow)
     }
 
-    console.log(this.randomShow)
+  }
+
+  closeModal() {
+    this.showModal = false;
+    console.log(this.showModal)
   }
 
 
