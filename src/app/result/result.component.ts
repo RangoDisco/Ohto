@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { QueryService } from '../common/query.service';
 
 @Component({
   selector: 'app-result',
   templateUrl: './result.component.html',
-  styleUrls: ['./result.component.scss']
+  styleUrls: ['./result.component.scss'],
 })
 export class ResultComponent implements OnInit {
-
   // Show reçu par le parent
   @Input()
   randomShow;
@@ -19,24 +19,12 @@ export class ResultComponent implements OnInit {
   @Input()
   charactersList: [];
 
-  // Boolean responsable de l'affichage de la boite modale
-  showModal: boolean = true;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-    // Display modal box if there is a random show
-    if (this.randomShow) {
-      this.showModal = true;
-      console.log(this.randomShow)
-    }
-
-  }
+  ngOnInit(): void {}
 
   // Closes modal box when clicking outside it
   closeModal() {
-    this.showModal = false;
+    this.randomShow = undefined;
   }
-
-
 }

@@ -2,14 +2,17 @@
 $bg-color: #262626;
 $accent: #2a9d8f;
 
-html {
-  background-color: $bg-color;
-  color: white;
+@font-face {
+  font-family: Roboto;
+  src: url(./assets/fonts/Roboto-Regular.ttf);
 }
+
 body {
   background-color: $bg-color;
   height: 100vh;
   display: flex;
+  color: white;
+  font-family: Roboto;
 }
 app-root {
   background-color: $bg-color;
@@ -19,5 +22,3 @@ app-root {
   justify-content: center;
 }
 
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';

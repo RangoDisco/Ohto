@@ -1,16 +1,10 @@
 <section class="filters">
-  <form (ngSubmit)="userFilters.valid && getFilters()" #userFilters="ngForm">
+  <form (ngSubmit)="userFilters.valid && getShow()" #userFilters="ngForm">
     <div class="filter-list">
       <!-- Type Select -->
-      <select class="filter" [(ngModel)]="userChoices.type" (change)="changeType()" name="type" #userType="ngModel"
-        required>
-        <option value="" seleted disabled hidden>Type</option>
-        <option value="ANIME">Anime</option>
-        <option value="MANGA">Manga</option>
+      <select class="filter" disabled name="type">
+        <option value="Anime">Anime</option>
       </select>
-      <div class="errors" *ngIf="userFilters.errors && userType.errors.required">
-        Please select
-      </div>
       <select class="filter" [(ngModel)]="userChoices.format" name="format" #userFormat="ngModel" required
         [disabled]="disableSelect">
         <option value="" seleted disabled hidden>Format</option>
@@ -19,7 +13,7 @@
         <option value="MOVIE">Movie</option>
         <option value="OVA">OVA</option>
       </select>
-      <div class="errors" *ngIf="userFilters.errors && userType.errors.required">
+      <div class="errors" *ngIf="userFilters.errors && userFormat.errors.required">
         Please select
       </div>
       <!-- Genre Select -->
@@ -54,7 +48,7 @@
       </select>
     </div>
     <section class="btn">
-      <button type="submit">Get my {{selectedType | lowercase}}</button>
+      <button type="submit">Get my anime</button>
     </section>
   </form>
 </section>

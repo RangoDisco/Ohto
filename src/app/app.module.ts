@@ -6,11 +6,10 @@ import { ResultComponent } from './result/result.component';
 import { FiltersComponent } from './filters/filters.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GraphQLModule } from './graphql.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent, ResultComponent, FiltersComponent],
-  imports: [BrowserModule, FormsModule, HttpClientModule, GraphQLModule, NgbModule],
+  imports: [BrowserModule, FormsModule, HttpClientModule, GraphQLModule],
   providers: [],
   bootstrap: [AppComponent],
 })
