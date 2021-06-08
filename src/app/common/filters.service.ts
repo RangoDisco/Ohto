@@ -4,13 +4,14 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class FiltersService {
-
   // Gets current year and add one bc anilist has data for the incomming year
   currentYear = new Date().getUTCFullYear() + 1;
   years: number[] = [];
   genres: string[];
+  formats: string[];
+  status: string[];
+  seasons: string[];
   constructor() {
-
     // All the genres for the genre filter
     this.genres = [
       'Action',
@@ -32,6 +33,13 @@ export class FiltersService {
       'Supernatural',
       'Thriller',
     ];
+
+    // Liste des formats
+    this.formats = ['TV'];
+    // Liste des status
+    this.status = ['RELEASING', 'FINISHED'];
+    // Liste des saisons
+    this.seasons = ['WINTER', 'SPRING', 'SUMMER', 'FALL'];
   }
 
   // Loop that creates all the year for the year filter

@@ -34,13 +34,13 @@ export class FiltersComponent implements OnInit {
   // Bool qui permet la desactivation de certaines filtres en fontion du type de show sélectionné
   disableSelect: boolean = false;
   constructor(
-    public filtersService: FiltersService,
-    public getShowService: QueryService
+    private filtersService: FiltersService,
+    private getShowService: QueryService
   ) {}
 
   ngOnInit(): void {
     // Instanciation de la classe
-    this.userChoices = new UserFilters('', 'ANIME', '', '', '', '', '');
+    this.userChoices = new UserFilters('ANIME', '', '', '', '', '');
 
     // Appel de la fonction qui crée les années disponibles
     this.years = this.filtersService.createYears();
@@ -50,36 +50,47 @@ export class FiltersComponent implements OnInit {
   }
 
   getShow(): void {
-    // Reset des tableaxu à chaque fois que la fonction est appellée
+    // Reset des tableaxu à chaque fois que la fonction est appelée
     this.genresFromShow = [];
     this.charactersList = [];
 
+    // Appel du service se servant de randomizer la requete si l'utilisateur ne rempli pas certains champs
+    for (let choice in this.userChoices) {
+      if (this.userChoices[choice] === '') this.userChoices[choice] = undefined;
+    }
+    console.log(this.userChoices);
     // Sub à l'obs rendu par le service
     this.getShowService.getShow(this.userChoices).subscribe((data) => {
       // On vient chercher le resultat de la requete
       this.queryResult = data.data.Page.media;
 
-      // On reçoit un tableau, je veux donc selectionner un élément aléatoirement dans le tableau
-      // Création d'un chiffre contenu entre 0 et la longeur du tableau
-      const randomNumber = Math.floor(Math.random() * this.queryResult.length);
-      this.randomShow = this.queryResult[randomNumber];
-
-      // Je veux afficher au maximum 3 genres, peu importe combien l'api m'en rend
-      for (let i = 0; i < 2; i++) {
-        // Je vérifie que ce que je veux push existe bien
-        if (this.randomShow.genres[i]) {
-          this.genresFromShow.push(this.randomShow.genres[i]);
+      if (this.queryResult.length !== 0) {
+        // On reçoit un tableau, je veux donc selectionner un élément aléatoirement dans le tableau
+        // Création d'un chiffre contenu entre 0 et la longeur du tableau
+        const randomNumber = Math.floor(
+          Math.random() * this.queryResult.length
+        );
+        this.randomShow = this.queryResult[randomNumber];
+        // Je veux afficher au maximum 3 genres, peu importe combien l'api m'en rend
+        for (let i = 0; i < 2; i++) {
+          // Je vérifie que ce que je veux push existe bien
+          if (this.randomShow.genres[i]) {
+            this.genresFromShow.push(this.randomShow.genres[i]);
+          }
         }
-      }
 
-      // Je veux afficher au maximum 4 personnages, peu importe combien l'api m'en rend
-      for (let j = 0; j < 4; j++) {
-        // Je vérifie que ce que je veux push existe bien
-        if (this.randomShow.characters.edges[j]) {
-          this.charactersList.push(this.randomShow.characters.edges[j]);
+        // Je veux afficher au maximum 4 personnages, peu importe combien l'api m'en rend
+        for (let j = 0; j < 4; j++) {
+          // Je vérifie que ce que je veux push existe bien
+          if (this.randomShow.characters.edges[j]) {
+            this.charactersList.push(this.randomShow.characters.edges[j]);
+          }
         }
-      }
+      } else alert('No result found');
     });
+    for (let choice in this.userChoices) {
+      if (this.userChoices[choice] === undefined) this.userChoices[choice] = '';
+    }
   }
   // // Change type on button
   // changeType(): void {

@@ -5,9 +5,16 @@
       <select class="filter" disabled name="type">
         <option value="Anime">Anime</option>
       </select>
-      <select class="filter" [(ngModel)]="userChoices.format" name="format" #userFormat="ngModel" required
+      <!-- Genre Select -->
+      <select class="filter" [(ngModel)]="userChoices.genre" #userGenre="ngModel" name="genre" required>
+        <option value="" selected disabled hidden>Genre*</option>
+        <option *ngFor="let genre of genres" value="{{ genre }}" name="{{ genre }}">
+          {{ genre }}
+        </option>
+      </select>
+      <select class="filter" [(ngModel)]="userChoices.format" name="format" #userFormat="ngModel"
         [disabled]="disableSelect">
-        <option value="" seleted disabled hidden>Format</option>
+        <option value="" seleted disabled hidden>Format </option>
         <option value="TV">TV</option>
         <option value="TV_SHORT">TV_Short</option>
         <option value="MOVIE">Movie</option>
@@ -16,22 +23,15 @@
       <div class="errors" *ngIf="userFilters.errors && userFormat.errors.required">
         Please select
       </div>
-      <!-- Genre Select -->
-      <select class="filter" [(ngModel)]="userChoices.genre" #userGenre="ngModel" name="genre" required>
-        <option value="" selected disabled hidden>Genre</option>
-        <option *ngFor="let genre of genres" value="{{ genre }}" name="{{ genre }}">
-          {{ genre }}
-        </option>
-      </select>
 
       <!-- Year Select -->
-      <select class="filter" [(ngModel)]="userChoices.year" name="year" #userYear="ngModel" required>
+      <select class="filter" [(ngModel)]="userChoices.year" name="year" #userYear="ngModel">
         <option value="" selected disabled hidden>Year</option>
         <option *ngFor="let year of years" value="{{ year }}">{{ year }}</option>
       </select>
 
       <!-- Season Select -->
-      <select class="filter" [(ngModel)]="userChoices.season" name="season" #userSeason="ngModel" required>
+      <select class="filter" [(ngModel)]="userChoices.season" name="season" #userSeason="ngModel">
         <option value="" selected disabled hidden>Season</option>
         <option value="WINTER">Winter</option>
         <option value="SPRING">Spring</option>

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { QueryService } from '../common/query.service';
 
 @Component({
   selector: 'app-result',

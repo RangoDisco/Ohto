@@ -36,7 +36,7 @@
             <div class="tags">
                 <div class="tag format">
                     <h3>Type</h3>
-                    <div class="tag-value">{{randomShow.type | titlecase}}</div>
+                    <div class="tag-value" *ngIf="randomShow.type; else noInfo">{{randomShow.type | titlecase}}</div>
                 </div>
                 <div class="tag genres">
                     <h3>Genres</h3>
@@ -44,19 +44,21 @@
                 </div>
                 <div class="tag episodes">
                     <h3>Episodes</h3>
-                    <div class="tag-value">{{randomShow.episodes}}</div>
+                    <div class="tag-value" *ngIf="randomShow.episodes; else noInfo">{{randomShow.episodes}}</div>
                 </div>
                 <div class="tag status">
                     <h3>Status</h3>
-                    <div class="tag-value">{{randomShow.status}}</div>
+                    <div class="tag-value" *ngIf="randomShow.status; else noInfo">{{randomShow.status | titlecase}}
+                    </div>
                 </div>
                 <div class="tag year">
                     <h3>Year</h3>
-                    <div class="tag-value">{{randomShow.startDate.year}}</div>
+                    <div class="tag-value" *ngIf="randomShow.startDate.year; else noInfo">{{randomShow.startDate.year}}
+                    </div>
                 </div>
                 <div class="tag score">
                     <h3>Score</h3>
-                    <div class="tag-value">{{randomShow.meanScore}} %</div>
+                    <div class="tag-value" *ngIf="randomShow.meanScore; else noInfo">{{randomShow.meanScore}} %</div>
                 </div>
             </div>
 
@@ -77,3 +79,8 @@
     </section>
 
 </main>
+
+<!-- Div Affichée si l'information demandée n'est pas disponible -->
+<ng-template #noInfo>
+    <div class="tag-value">No info</div>
+</ng-template>

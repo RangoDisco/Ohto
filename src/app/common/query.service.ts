@@ -83,7 +83,6 @@ export class QueryService {
   public getShow(userChoices): Observable<any> {
     return this.apollo.watchQuery<any>({
       query: this.queryShow,
-
       // On défini que le contenu des variables correspond aux choix de l'utilisateur
       variables: {
         type: userChoices.type,
@@ -93,7 +92,7 @@ export class QueryService {
         season: userChoices.season,
         status: userChoices.status,
         page: 1,
-        perPage: 10,
+        perPage: 25,
       },
     }).valueChanges;
   }
