@@ -1,0 +1,80 @@
+<section class="logo"><a href="https://github.com/RangoDisco/Ohto" target="_blank" rel="noopener noreferrer">
+    <img class="github-logo" src="assets/img/github.svg" alt="logo github">
+  </a>
+</section>
+<section class="filters">
+  <form (ngSubmit)="userFilters.valid && getShow()" #userFilters="ngForm">
+    <div class="filter-list">
+      <!-- Type Select -->
+      <div class="div-filter">
+        <select class="filter" disabled name="type">
+          <option value="Anime">Anime</option>
+        </select>
+      </div>
+      <!-- Genre Select -->
+      <div class="div-filter">
+        <select class="filter" [(ngModel)]="userChoices.genre" #userGenre="ngModel" name="genre" required>
+          <option value="" selected disabled hidden>Genre*</option>
+          <option *ngFor="let genre of genres" value="{{ genre }}" name="{{ genre }}">
+            {{ genre }}
+          </option>
+        </select>
+        <div class="errors" *ngIf="userGenre.errors && userFilters.submitted">
+          <div *ngIf="userGenre.errors?.required">Please select a genre</div>
+        </div>
+      </div>
+      <!-- Status Select -->
+      <div class="div-filter">
+        <select class="filter" [(ngModel)]="userChoices.status" name="status" #userStatus="ngModel" required>
+          <option value="" selected disabled hidden>Airing*</option>
+          <option value="RELEASING">Releasing</option>
+          <option value="FINISHED">Finished</option>
+          <option value="NOT_YET_RELEASED">Not Yet Aired</option>
+          <option value="CANCELLED">Cancelled</option>
+        </select>
+        <div class="errors" *ngIf="userStatus.errors && userFilters.submitted">
+          <div *ngIf="userStatus.errors?.required">Please select an airing status</div>
+        </div>
+      </div>
+      <div class="div-filter">
+        <select class="filter" [(ngModel)]="userChoices.format" name="format" #userFormat="ngModel"
+          [disabled]="disableSelect">
+          <option value="" seleted disabled hidden>Format </option>
+          <option value="TV">TV</option>
+          <option value="TV_SHORT">TV_Short</option>
+          <option value="MOVIE">Movie</option>
+          <option value="OVA">OVA</option>
+        </select>
+        <div class="errors" *ngIf="userFilters.errors && userFormat.errors.required">
+          Please select
+        </div>
+      </div>
+      <!-- Year Select -->
+      <div class="div-filter">
+        <select class="filter" [(ngModel)]="userChoices.year" name="year" #userYear="ngModel">
+          <option value="" selected disabled hidden>Year</option>
+          <option *ngFor="let year of years" value="{{ year }}">{{ year }}</option>
+        </select>
+      </div>
+      <!-- Season Select -->
+      <div class="div-filter">
+        <select class="filter" [(ngModel)]="userChoices.season" name="season" #userSeason="ngModel">
+          <option value="" selected disabled hidden>Season</option>
+          <option value="WINTER">Winter</option>
+          <option value="SPRING">Spring</option>
+          <option value="SUMMER">Summer</option>
+          <option value="FALL">Fall</option>
+        </select>
+      </div>
+    </div>
+    <section class="btn">
+      <button type="submit" [disabled]="isLoading">Get my anime</button>
+    </section>
+  </form>
+  <div class="loading" *ngIf="isLoading">Loading your show...</div>
+</section>
+
+<section class="result">
+  <app-result [randomShow]="randomShow" [genresFromShow]="genresFromShow" [charactersList]="charactersList">
+  </app-result>
+</section>

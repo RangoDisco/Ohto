@@ -27,7 +27,7 @@
                         </ng-template>
                     </div>
                 </div>
-                <div class="description" [innerHTML]="randomShow.description | slice: 0:330"></div>
+                <div class="description" [innerHTML]="randomShow.description | truncateDesc"></div>
             </div>
         </div>
 

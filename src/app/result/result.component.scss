@@ -36,14 +36,14 @@ $accent: #2a9d8f;
   border-radius: 5px;
   height: 250px;
 }
-.title{
+.title {
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
-.close-modal{
+.close-modal {
   color: $accent;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 }
@@ -59,6 +59,7 @@ $accent: #2a9d8f;
 }
 .desc-title {
   margin-left: 10px;
+  width: 100%;
 }
 .description {
   font-size: 1.1rem;
@@ -119,7 +120,7 @@ $accent: #2a9d8f;
   justify-content: center;
   font-size: 1.2rem;
 }
-.name{
+.name {
   color: $accent;
 }
 // END BOTTOM

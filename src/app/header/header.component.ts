@@ -1,14 +1,14 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
-import { FiltersService } from '../common/filters.service';
-import { QueryService } from '../common/query.service';
-import { UserFilters } from '../common/user-filters.model';
+import { FiltersService } from '../common/services/filters.service';
+import { QueryService } from '../common/services/query.service';
+import { UserFilters } from '../common/models/user-filters.model';
 
 @Component({
-  selector: 'app-filters',
-  templateUrl: './filters.component.html',
-  styleUrls: ['./filters.component.scss'],
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
 })
-export class FiltersComponent implements OnInit {
+export class HeaderComponent implements OnInit {
   // Tableau contenant toutes les annnées
   years: number[];
 
@@ -26,13 +26,17 @@ export class FiltersComponent implements OnInit {
 
   // Notre show final
   randomShow;
+
   // Tableau qui va contenir les genres du show
   genresFromShow: string[] = [];
+
   // Tableau qui va contenir les personnages du show
   charactersList: any[] = [];
 
-  // Bool qui permet la desactivation de certaines filtres en fontion du type de show sélectionné
+  // Boolean qui permet la desactivation de certaines filtres en fontion du type de show sélectionné
   disableSelect: boolean = false;
+  // Boolean qui permet d'empecher l'utilisateur de faire plusieurs requetes en spammant le bouton
+  isLoading: boolean = false;
   constructor(
     private filtersService: FiltersService,
     private getShowService: QueryService
@@ -50,17 +54,20 @@ export class FiltersComponent implements OnInit {
   }
 
   getShow(): void {
+    this.isLoading = true;
     // Reset des tableaxu à chaque fois que la fonction est appelée
     this.genresFromShow = [];
     this.charactersList = [];
 
-    // Appel du service se servant de randomizer la requete si l'utilisateur ne rempli pas certains champs
+    // Permets de faire la requete même si certains champs ne sont pas remplis
     for (let choice in this.userChoices) {
       if (this.userChoices[choice] === '') this.userChoices[choice] = undefined;
     }
     console.log(this.userChoices);
+
     // Sub à l'obs rendu par le service
     this.getShowService.getShow(this.userChoices).subscribe((data) => {
+      this.isLoading = data.loading;
       // On vient chercher le resultat de la requete
       this.queryResult = data.data.Page.media;
 
@@ -70,7 +77,10 @@ export class FiltersComponent implements OnInit {
         const randomNumber = Math.floor(
           Math.random() * this.queryResult.length
         );
+
+        // Selection du show random dans la liste rendue par l'API
         this.randomShow = this.queryResult[randomNumber];
+
         // Je veux afficher au maximum 3 genres, peu importe combien l'api m'en rend
         for (let i = 0; i < 2; i++) {
           // Je vérifie que ce que je veux push existe bien
@@ -88,17 +98,10 @@ export class FiltersComponent implements OnInit {
         }
       } else alert('No result found');
     });
+
+    // Remise à 0 des filtres non selectionés par l'utilisateur
     for (let choice in this.userChoices) {
       if (this.userChoices[choice] === undefined) this.userChoices[choice] = '';
     }
   }
-  // // Change type on button
-  // changeType(): void {
-  //   this.selectedType = this.userChoices.type;
-  //   // Désactive les différents filtres qui ne correspondent pas au choix Manga
-  //   if (this.userChoices.type === "MANGA") this.disableSelect = !this.disableSelect;
-  //   // Les réactives
-  //   else if (this.userChoices.type === "ANIME") this.disableSelect = false;
-
-  // }
 }

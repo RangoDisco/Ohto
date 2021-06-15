@@ -1,6 +1,11 @@
 $bg-color: #262626;
 $accent: #2a9d8f;
-
+.github-logo {
+  height: 50px;
+  position: absolute;
+  top: 1%;
+  right: 1%;
+}
 .btn {
   margin-top: 2%;
   display: flex;
@@ -34,12 +39,23 @@ button {
 
 .filter {
   font-size: 1.3rem;
-  margin: 10px;
   height: 40px;
+  width: 100%;
+}
+.div-filter {
+  margin: 10px;
   width: 25%;
 }
-
-app-result{
+.errors {
+  width: 100%;
+  margin-top: 5%;
+  text-align: center;
+}
+.loading {
+  font-size: 1.2rem;
+  text-align: center;
+}
+app-result {
   display: flex;
   justify-content: center;
 }
