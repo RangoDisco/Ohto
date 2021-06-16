@@ -59,3 +59,26 @@ app-result {
   display: flex;
   justify-content: center;
 }
+
+@media screen and (max-width: 990px) {
+  button {
+    width: 65%;
+  }
+}
+@media screen and (max-width: 556px) {
+  .filters {
+    font-size: 1.2rem;
+  }
+  .filter-list {
+    width: 100%;
+  }
+  .div-filter {
+    width: 40%;
+  }
+  .errors {
+    font-size: 1rem;
+  }
+  button {
+    width: 90%;
+  }
+}

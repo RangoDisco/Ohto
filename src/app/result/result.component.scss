@@ -31,7 +31,7 @@ $accent: #2a9d8f;
   display: flex;
   flex-direction: row;
 }
-.img img {
+.anime-img {
   margin: 0 15px 0 0;
   border-radius: 5px;
   height: 250px;
@@ -124,3 +124,51 @@ $accent: #2a9d8f;
   color: $accent;
 }
 // END BOTTOM
+
+@media screen and (max-width: 556px) {
+  .result {
+    left: auto;
+    top: auto;
+    background-color: $bg-color;
+    height: 156px;
+    width: 100%;
+    z-index: 0;
+    position: relative;
+  }
+  .result-card {
+    width: 80%;
+    height: fit-content;
+  }
+  .anime-img-div {
+    height: fit-content;
+  }
+  .anime-img {
+    height: 150px;
+  }
+  .title {
+    font-size: 1rem;
+  }
+  .description {
+    font-size: 1rem;
+  }
+  // BOTTOM
+  .bottom {
+    width: 100%;
+    flex-direction: column;
+  }
+  .tags,
+  .characters {
+    width: 100%;
+  }
+  .character {
+    height: fit-content;
+    padding-bottom: 0;
+  }
+  .img-char {
+    height: 100px;
+    width: 60px;
+  }
+  .char-name-role {
+    font-size: 1rem;
+  }
+}

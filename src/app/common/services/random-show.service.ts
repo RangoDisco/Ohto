@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RandomShowService {
   // Notre show final
@@ -13,17 +13,16 @@ export class RandomShowService {
   // Tableau qui va contenir les personnages du show
   charactersList: any[] = [];
   // Here we define our query as a multi-line string
-  constructor() { }
+  constructor() {}
 
   createRandomShow(queryResult) {
+    // Reset des tableaux de genres et de personnages à chaque appel de la fonction
     this.genresFromShow = [];
     this.charactersList = [];
     if (queryResult.length !== 0) {
-      // On reçoit un tableau, je veux donc selectionner un élément aléatoirement dans le tableau
+      // On reçoit un tableau, je ne veux qu'un seul show donc selectionner un élément aléatoirement dans le tableau
       // Création d'un chiffre contenu entre 0 et la longeur du tableau
-      const randomNumber = Math.floor(
-        Math.random() * queryResult.length
-      );
+      const randomNumber = Math.floor(Math.random() * queryResult.length);
       // Selection du show random dans la liste rendue par l'API
       this.randomShow = queryResult[randomNumber];
       // Je veux afficher au maximum 3 genres, peu importe combien l'api m'en rend

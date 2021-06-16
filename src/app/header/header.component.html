@@ -53,6 +53,7 @@
       <div class="div-filter">
         <select class="filter" [(ngModel)]="userChoices.year" name="year" #userYear="ngModel">
           <option value="" selected disabled hidden>Year</option>
+          <option value="">Any</option>
           <option *ngFor="let year of years" value="{{ year }}">{{ year }}</option>
         </select>
       </div>
