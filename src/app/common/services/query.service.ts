@@ -6,9 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class QueryService {
-  constructor(private apollo: Apollo) {}
-
-  // Here we define our query as a multi-line string
+  constructor(private apollo: Apollo) { }
   public queryShow = gql`
     query (
       $id: Int
@@ -94,6 +92,6 @@ export class QueryService {
         page: 1,
         perPage: 25,
       },
-    }).valueChanges;
+    }).valueChanges
   }
 }

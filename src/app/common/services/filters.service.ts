@@ -8,9 +8,6 @@ export class FiltersService {
   currentYear = new Date().getUTCFullYear() + 1;
   years: number[] = [];
   genres: string[];
-  formats: string[];
-  status: string[];
-  seasons: string[];
   constructor() {
     // All the genres for the genre filter
     this.genres = [
@@ -34,12 +31,6 @@ export class FiltersService {
       'Thriller',
     ];
 
-    // Liste des formats
-    this.formats = ['TV'];
-    // Liste des status
-    this.status = ['RELEASING', 'FINISHED'];
-    // Liste des saisons
-    this.seasons = ['WINTER', 'SPRING', 'SUMMER', 'FALL'];
   }
 
   // Loop that creates all the year for the year filter

@@ -27,7 +27,8 @@
                         </ng-template>
                     </div>
                 </div>
-                <div class="description" [innerHTML]="randomShow.description | truncateDesc"></div>
+                <div class="description" *ngIf="randomShow.description; else noInfo"
+                    [innerHTML]="randomShow.description | truncateDesc"></div>
             </div>
         </div>
 
