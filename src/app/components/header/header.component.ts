@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
-import { FiltersService } from '../common/services/filters.service';
-import { QueryService } from '../common/services/query.service';
-import { UserFilters } from '../common/models/user-filters.model';
-import { RandomShowService } from '../common/services/random-show.service';
+import { FiltersService } from '../../common/services/filters.service';
+import { QueryService } from '../../common/services/query.service';
+import { UserFilters } from '../../common/models/user-filters.model';
+import { RandomShowService } from '../../common/services/random-show.service';
 
 @Component({
   selector: 'app-header',

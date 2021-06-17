@@ -4,13 +4,14 @@
     <section class=" result-card">
 
         <!-- Top de la carte -->
-        <div class="top">
+        <div class="top" *ngIf="windowWidth > 556px">
             <div class="anime-img-div"><img [src]="randomShow.coverImage.large" class="anime-img"
                     alt="Image de l'anime"></div>
             <div class="desc-title">
                 <div class="title-button">
                     <div class="title">
                         <h2>{{randomShow.title.romaji}}</h2>
+                        <!-- BUTTON FERMER MODAL -->
                         <div class="close-modal" (click)="closeModal()"><svg xmlns="http://www.w3.org/2000/svg"
                                 width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -19,6 +20,7 @@
                                 <line x1="6" y1="6" x2="18" y2="18"></line>
                             </svg></div>
                     </div>
+                    <!-- BUTTON ANILIST -->
                     <div class="anilist-button">
                         <a class="anilist" href="https://anilist.co/manga/{{randomShow.id}}" target="_blank"
                             *ngIf="randomShow.chapters !== null; else anime">Anilist</a>
@@ -28,8 +30,45 @@
                         </ng-template>
                     </div>
                 </div>
+                <!-- DESCRIPTION -->
                 <div class="description" *ngIf="randomShow.description; else noInfo"
-                    [innerHTML]="randomShow.description | truncateDesc"></div>
+                    [innerHTML]="randomShow.description | truncateDesc">
+                </div>
+            </div>
+        </div>
+
+        <!-- MOBILE CARD TOP -->
+        <div class="mobile-top" *ngIf="windowWidth < 556px">
+            <div class="img-title">
+                <div class="anime-img-div"><img [src]="randomShow.coverImage.large" class="anime-img"
+                        alt="Image de l'anime">
+                </div>
+                <div class="title-button">
+                    <div class="title">
+                        <h2>{{randomShow.title.romaji}}</h2>
+                        <!-- MOBILE BUTTON CLOSE MODAL -->
+                        <div class="close-modal" (click)="closeModal()"><svg xmlns="http://www.w3.org/2000/svg"
+                                width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="feather feather-x">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg></div>
+                    </div>
+                    <!-- MOBILE BUTTON ANILIST -->
+                    <div class="anilist-button">
+                        <a class="anilist" href="https://anilist.co/manga/{{randomShow.id}}" target="_blank"
+                            *ngIf="randomShow.chapters !== null; else anime">Anilist</a>
+                        <ng-template #anime>
+                            <a href="https://anilist.co/anime/{{randomShow.id}}" target="_blank"
+                                class="anilist">Anilist</a>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+            <!-- MOBILE DESCRIPTION -->
+            <div class="description" *ngIf="randomShow.description; else noInfo"
+                [innerHTML]="randomShow.description | truncateDesc">
             </div>
         </div>
 

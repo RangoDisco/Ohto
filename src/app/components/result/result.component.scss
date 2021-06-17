@@ -124,7 +124,17 @@ $accent: #2a9d8f;
   color: $accent;
 }
 // END BOTTOM
-
+@media screen and (max-width: 990px) {
+  .result {
+    width: 100%;
+  }
+  .result-card {
+    width: 95%;
+  }
+  .character {
+    font-size: 1rem;
+  }
+}
 @media screen and (max-width: 556px) {
   .result {
     left: auto;
@@ -135,8 +145,15 @@ $accent: #2a9d8f;
     z-index: 0;
     position: relative;
   }
+  .mobile-top {
+    display: flex;
+    flex-direction: column;
+  }
+  .img-title {
+    display: flex;
+  }
   .result-card {
-    width: 80%;
+    width: 100%;
     height: fit-content;
   }
   .anime-img-div {
@@ -148,8 +165,18 @@ $accent: #2a9d8f;
   .title {
     font-size: 1rem;
   }
+  .title {
+    h2 {
+      margin-top: 5%;
+    }
+  }
+  .close-modal {
+    display: none;
+  }
   .description {
+    margin-top: 1%;
     font-size: 1rem;
+    width: 100%;
   }
   // BOTTOM
   .bottom {
@@ -160,13 +187,25 @@ $accent: #2a9d8f;
   .characters {
     width: 100%;
   }
+  .tags {
+    margin-bottom: 30px;
+    h3 {
+      font-size: 1.1rem;
+    }
+  }
+  .tag-value {
+    font-size: 1rem;
+  }
   .character {
-    height: fit-content;
-    padding-bottom: 0;
+    height: 80px;
+    margin: 0 2.5% 0 2.5%;
+    margin-right: 2.5%;
+    margin-left: 2.5%;
+    width: 45%;
   }
   .img-char {
-    height: 100px;
-    width: 60px;
+    height: 80px;
+    width: 50px;
   }
   .char-name-role {
     font-size: 1rem;

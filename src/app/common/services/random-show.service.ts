@@ -13,7 +13,7 @@ export class RandomShowService {
   // Tableau qui va contenir les personnages du show
   charactersList: any[] = [];
   // Here we define our query as a multi-line string
-  constructor() {}
+  constructor() { }
 
   createRandomShow(queryResult) {
     // Reset des tableaux de genres et de personnages à chaque appel de la fonction

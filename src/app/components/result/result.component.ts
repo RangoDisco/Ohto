@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-result',
@@ -18,10 +18,16 @@ export class ResultComponent implements OnInit {
   @Input()
   charactersList: [];
 
-  constructor() {}
+  public windowWidth: number;
+  constructor() { }
 
-  ngOnInit(): void {}
-
+  ngOnInit(): void {
+    this.windowWidth = window.innerWidth;
+  }
+  @HostListener('window:resize')
+  onResize() {
+    this.windowWidth = window.innerWidth;
+  }
   // Closes modal box when clicking outside it
   closeModal() {
     this.randomShow = undefined;
