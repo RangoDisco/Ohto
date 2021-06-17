@@ -1,5 +1,3 @@
-# 👷 CURRENTLY IN DEVELOPEMENT
-
 ## :fireworks: Ohto :sparkler:
 
 ## A small app offering a random anime based on your filters using:
