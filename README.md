@@ -1,4 +1,4 @@
-## :fireworks: [Ohto](http://www.ohto.fun) :sparkler:
+## :fireworks: [Ohto](https://www.ohto.fun) :sparkler:
 
 ## A small app offering a random anime based on your filters using:
 
