@@ -1,11 +1,5 @@
 $bg-color: #262626;
 $accent: #2a9d8f;
-.github-logo {
-  height: 50px;
-  position: absolute;
-  top: 1%;
-  right: 1%;
-}
 .btn {
   margin-top: 2%;
   display: flex;
@@ -30,7 +24,7 @@ button {
 }
 
 .filter-list {
-  width: 70%;
+  width: 80%;
   margin: auto;
   display: flex;
   flex-flow: row wrap;

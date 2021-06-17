@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-
+  public logoSite = '../assets/img/title.png'
   constructor() { }
 
   ngOnInit(): void {

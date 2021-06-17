@@ -1,0 +1,22 @@
+$bg-color: #262626;
+$accent: #2a9d8f;
+.github-logo {
+  height: 50px;
+  position: absolute;
+  top: 1%;
+  right: 1%;
+}
+.logo-site {
+  width: 30%;
+  justify-self: center;
+}
+html,
+body {
+  background-color: $bg-color;
+}
+
+@media screen and (max-width: 990px) {
+  .logo-site {
+    width: 60%;
+  }
+}
