@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit {
     private filtersService: FiltersService,
     private queryService: QueryService,
     private randomShowService: RandomShowService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     // Instanciation de la classe
@@ -63,17 +63,15 @@ export class HeaderComponent implements OnInit {
     for (let choice in this.userChoices) {
       if (this.userChoices[choice] === '') this.userChoices[choice] = undefined;
     }
-    console.log(this.userChoices);
 
     // Sub à l'obs rendu par le service
     this.queryService.getShow(this.userChoices).subscribe((data) => {
       this.isLoading = data.loading;
 
-      this.randomShowService.createRandomShow(data.data.Page.media)
+      this.randomShowService.createRandomShow(data.data.Page.media);
       this.randomShow = this.randomShowService.randomShow;
       this.genresFromShow = this.randomShowService.genresFromShow;
       this.charactersList = this.randomShowService.charactersList;
-
     });
 
     // Remise à 0 des filtres non selectionés par l'utilisateur
