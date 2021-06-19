@@ -12,15 +12,15 @@ export class RandomShowService {
 
   // Tableau qui va contenir les personnages du show
   charactersList: any[] = [];
-  // Here we define our query as a multi-line string
-  constructor() {}
+  constructor() { }
 
   createRandomShow(queryResult) {
     // Reset des tableaux de genres et de personnages à chaque appel de la fonction
     this.genresFromShow = [];
     this.charactersList = [];
+
+    // On reçoit un tableau, je ne veux qu'un seul show donc selectionner un élément aléatoirement dans le tableau
     if (queryResult.length !== 0) {
-      // On reçoit un tableau, je ne veux qu'un seul show donc selectionner un élément aléatoirement dans le tableau
       // Création d'un chiffre contenu entre 0 et la longeur du tableau
       const randomNumber = Math.floor(Math.random() * queryResult.length);
       // Selection du show random dans la liste rendue par l'API
@@ -39,6 +39,7 @@ export class RandomShowService {
           this.charactersList.push(this.randomShow.characters.edges[j]);
         }
       }
+      // Si l'api ne me rend rien j'alerte l'utilisateur qu'aucun show n'a été trouvé
     } else alert('No result found');
   }
 }

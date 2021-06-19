@@ -81,7 +81,7 @@ export class QueryService {
   public getShow(userChoices): Observable<any> {
     return this.apollo.watchQuery<any>({
       query: this.queryShow,
-      // On défini que le contenu des variables correspond aux choix de l'utilisateur
+      // On définit que le contenu des variables correspond aux choix de l'utilisateur
       variables: {
         type: userChoices.type,
         format: userChoices.format,
