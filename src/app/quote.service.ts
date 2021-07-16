@@ -13,7 +13,7 @@ export class QuoteService {
     const obs: Observable<any> = this.http.get(
       'https://animechan.vercel.app/api/random'
     );
-    const result = (data) => {
+    const result = (data: JSON) => {
       return data as JSON;
     };
 

@@ -1,1 +1,7 @@
-<p>quote works!</p>
+<main class="quote-page">
+  <section class="quote-cotainer" *ngIf="quote">
+    <p class="quote-anime">{{ quote.anime }}</p>
+    <p class="quote-character">{{ quote.character }}</p>
+    <p class="quote-text">{{ quote.quote }}</p>
+  </section>
+</main>
