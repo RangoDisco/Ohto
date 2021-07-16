@@ -10,7 +10,8 @@ export class QuoteComponent implements OnInit {
   public quote;
   constructor(private quoteService: QuoteService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+  showQuote() {
     this.quoteService
       .getQuote()
       .subscribe((quote) => ((this.quote = quote), console.log(this.quote)));

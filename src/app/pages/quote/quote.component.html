@@ -1,5 +1,6 @@
 <main class="quote-page">
-  <section class="quote-cotainer" *ngIf="quote">
+  <button class="quote" (click)="showQuote()">Show Quote</button>
+  <section class="quote-container" *ngIf="quote">
     <p class="quote-anime">{{ quote.anime }}</p>
     <p class="quote-character">{{ quote.character }}</p>
     <p class="quote-text">{{ quote.quote }}</p>
